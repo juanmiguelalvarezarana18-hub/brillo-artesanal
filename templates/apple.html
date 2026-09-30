@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brillo Artesanal | Velas Ecológicas de Soya</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0c;
+            --surface-color: rgba(22, 22, 24, 0.8);
+            --surface-border: rgba(255, 255, 255, 0.12);
+            --text-main: #f5f5f7;
+            --text-muted: #86868b;
+            --accent-gold: #f0c36b;
+            --accent-gradient: linear-gradient(135deg, #f0c36b 0%, #c59b27 100%);
+            --glow-gold: rgba(240, 195, 107, 0.18);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 40px 20px;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 900px;
+        }
+
+        /* Hero Section Empresarial estilo Apple */
+        .hero {
+            text-align: center;
+            padding: 60px 20px 40px 20px;
+        }
+
+        .logo-wrapper {
+            display: inline-block;
+            margin-bottom: 24px;
+            animation: floatLogo 5s ease-in-out infinite;
+        }
+
+        .logo-wrapper img {
+            width: 150px;
+            height: auto;
+            border-radius: 28px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.7), 0 0 30px var(--glow-gold);
+            border: 1px solid rgba(240, 195, 107, 0.4);
+        }
+
+        @keyframes floatLogo {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .hero h1 {
+            font-size: clamp(2.5rem, 5vw, 3.8rem);
+            font-weight: 700;
+            letter-spacing: -0.015em;
+            margin-bottom: 12px;
+            background: linear-gradient(180deg, #ffffff 0%, #d1d1d6 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p.subtitle {
+            font-size: clamp(1.1rem, 2vw, 1.35rem);
+            color: var(--text-muted);
+            max-width: 650px;
+            margin: 0 auto 24px auto;
+            font-weight: 400;
+        }
+
+        .badge-location {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(240, 195, 107, 0.1);
+            color: var(--accent-gold);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid rgba(240, 195, 107, 0.25);
+        }
+
+        /* Grid de Secciones Estilo Bento */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 24px;
+            margin-top: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .bento-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .full-span {
+                grid-column: span 2;
+            }
+        }
+
+        .bento-card {
+            background: var(--surface-color);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 1px solid var(--surface-border);
+            border-radius: 28px;
+            padding: 32px;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+        }
+
+        .bento-card:hover {
+            border-color: rgba(240, 195, 107, 0.4);
+        }
+
+        .card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            margin-bottom: 20px;
+        }
+
+        .card-header span {
+            font-size: 1.5rem;
+        }
+
+        .card-header h2 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--text-main);
+            letter-spacing: -0.01em;
+        }
+
+        /* Presentación de Producto & Precios */
+        .price-display {
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--accent-gold);
+            margin: 10px 0;
+            letter-spacing: -0.02em;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            line-height: 1.6;
+        }
+
+        /* Aromas corporativos */
+        .aromas-container {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 14px;
+        }
+
+        .aroma-card {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--surface-border);
+            border-radius: 20px;
+            padding: 20px 12px;
+            text-align: center;
+            transition: background 0.2s ease;
+        }
+
+        .aroma-card:hover {
+            background: rgba(255, 255, 255, 0.06);
+        }
+
+        .aroma-emoji {
+            font-size: 2.2rem;
+            margin-bottom: 8px;
+        }
+
+        .aroma-title {
+            font-size: 0.95rem;
+            font-weight: 600;
+        }
+
+        /* Formulario Profesional */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-label {
+            display: block;
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        .form-input, .form-select {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid var(--surface-border);
+            border-radius: 14px;
+            padding: 14px 18px;
+            color: var(--text-main);
+            font-size: 1rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .form-input:focus, .form-select:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 4px var(--glow-gold);
+        }
+
+        .btn-primary {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: #111;
+            font-weight: 600;
+            border: none;
+            border-radius: 14px;
+            padding: 16px;
+            font-size: 1.05rem;
+            cursor: pointer;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            box-shadow: 0 10px 25px rgba(240, 195, 107, 0.3);
+            margin-top: 10px;
+        }
+
+        .btn-primary:hover {
+            opacity: 0.92;
+            transform: translateY(-1px);
+        }
+
+        .btn-primary:active {
+            transform: translateY(1px);
+        }
+
+        /* Footer Ejecutivo */
+        .footer {
+            text-align: center;
+            margin-top: 50px;
+            padding-bottom: 30px;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--surface-border);
+            padding-top: 25px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <!-- Hero Header -->
+        <header class="hero">
+            <div class="logo-wrapper">
+                <img src="{{ url_for('static', filename='logo.jpeg') }}" alt="Brillo Artesanal Logo">
+            </div>
+            <h1>Brillo Artesanal</h1>
+            <p class="subtitle">Iluminación sostenible y aromática elaborada con cera de soya en envases de vidrio reciclado.</p>
+            <div class="badge-location">
+                📍 Pacasmayo, Perú • Exhibición Oficial
+            </div>
+        </header>
+
+        <!-- Bento Grid Principal -->
+        <div class="bento-grid">
+            
+            <!-- Tarjeta de Producto & Precio -->
+            <div class="bento-card">
+                <div class="card-header">
+                    <span>✨</span>
+                    <h2>Colección Exclusiva</h2>
+                </div>
+                <p class="product-desc">
+                    Velas ecológicas diseñadas bajo un concepto minimalista, ideales para crear ambientes cálidos, relajantes y ecoamigables.
+                </p>
+                <div class="price-display">S/ 12.00</div>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Precio por unidad en presentación estándar.</p>
+            </div>
+
+            <!-- Tarjeta de Esencias -->
+            <div class="bento-card">
+                <div class="card-header">
+                    <span>🌿</span>
+                    <h2>Aromas Naturales</h2>
+                </div>
+                <div class="aromas-container">
+                    <div class="aroma-card">
+                        <div class="aroma-emoji">🍊</div>
+                        <div class="aroma-title">Naranja</div>
+                    </div>
+                    <div class="aroma-card">
+                        <div class="aroma-emoji">🥥</div>
+                        <div class="aroma-title">Coco</div>
+                    </div>
+                    <div class="aroma-card">
+                        <div class="aroma-emoji">🌿</div>
+                        <div class="aroma-title">Menta</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Tarjeta de Formulario de Pedido (Ocupa todo el ancho inferior o diseño equilibrado) -->
+            <div class="bento-card full-span">
+                <div class="card-header">
+                    <span>🛍️</span>
+                    <h2>Gestión de Pedidos</h2>
+                </div>
+                <form method="POST">
+                    <div class="bento-grid" style="margin-top: 0; gap: 16px;">
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Nombre del Cliente</label>
+                            <input type="text" name="cliente" class="form-input" required placeholder="Ej. Carlos Mendoza">
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Cantidad</label>
+                            <input type="number" name="cantidad" class="form-input" min="1" value="1" required>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Aroma Seleccionado</label>
+                            <select name="aroma" class="form-select">
+                                <option value="Naranja">Naranja</option>
+                                <option value="Coco">Coco</option>
+                                <option value="Menta">Menta</option>
+                            </select>
+                        </div>
+                        <div class="form-group" style="margin-bottom: 0;">
+                            <label class="form-label">Ubicación / Stand</label>
+                            <input type="text" name="direccion" class="form-input" required placeholder="Ej. Stand Principal #4">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-primary">Registrar Pedido</button>
+                </form>
+            </div>
+
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            I.E. Señor de los Milagros • Proyecto de Sostenibilidad y Emprendimiento Escolar
+        </footer>
+    </div>
+
+</body>
+</html>

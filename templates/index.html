@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brillo Artesanal</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --card-bg: #141414;
+            --card-border: #262626;
+            --gold: #d4af37;
+            --gold-light: #f3e5ab;
+            --text-main: #f1f1f1;
+            --text-muted: #999;
+            --accent-green: #4caf50;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        .app-container {
+            max-width: 480px;
+            margin: 0 auto;
+            min-height: 100vh;
+            padding: 20px 16px 40px 16px;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+            padding: 20px;
+            background: linear-gradient(145deg, #181818, #111);
+            border-radius: 20px;
+            border: 1px solid var(--card-border);
+        }
+
+        h1 {
+            color: var(--gold);
+            font-size: 1.7em;
+            margin: 10px 0 5px 0;
+        }
+
+        .school-tag {
+            background: rgba(212, 175, 55, 0.1);
+            color: var(--gold-light);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75em;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            display: inline-block;
+        }
+
+        .card {
+            background-color: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            padding: 18px;
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        h2 {
+            color: var(--gold);
+            font-size: 1.1em;
+            margin-top: 0;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Cuadrículas visuales limpias */
+        .visual-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 10px;
+            margin-top: 10px;
+        }
+
+        .visual-item {
+            background: #1a1a1a;
+            border: 1px solid #2a2a2a;
+            border-radius: 12px;
+            padding: 12px 5px;
+        }
+
+        .visual-item span {
+            font-size: 1.8em;
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        .visual-item h4 {
+            margin: 0;
+            color: var(--gold-light);
+            font-size: 0.85em;
+        }
+
+        .price-badge {
+            background: rgba(76, 175, 80, 0.15);
+            color: var(--accent-green);
+            padding: 8px;
+            border-radius: 10px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin-top: 15px;
+            border: 1px dashed rgba(76, 175, 80, 0.4);
+        }
+
+        .steps-container {
+            display: flex;
+            justify-content: space-between;
+            gap: 5px;
+        }
+
+        .step-box {
+            background: #1a1a1a;
+            flex: 1;
+            padding: 10px 4px;
+            border-radius: 10px;
+            border: 1px solid #2a2a2a;
+            font-size: 0.75em;
+        }
+
+        .step-box strong {
+            display: block;
+            color: var(--gold);
+            font-size: 1.1em;
+            margin-bottom: 4px;
+        }
+
+        /* Formulario */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            text-align: left;
+        }
+
+        input, select, button {
+            padding: 11px;
+            border-radius: 8px;
+            border: 1px solid #333;
+            background-color: #1a1a1a;
+            color: #fff;
+            font-size: 0.9em;
+            outline: none;
+        }
+
+        input:focus, select:focus {
+            border-color: var(--gold);
+        }
+
+        button {
+            background: linear-gradient(135deg, var(--gold), #b89728);
+            color: #0b0b0b;
+            font-weight: bold;
+            cursor: pointer;
+            border: none;
+            margin-top: 5px;
+        }
+
+        .alert {
+            background-color: rgba(76, 175, 80, 0.2);
+            color: #a5d6a7;
+            padding: 10px;
+            border-radius: 8px;
+            text-align: center;
+            margin-bottom: 12px;
+            border: 1px solid var(--accent-green);
+            font-size: 0.85em;
+            display: none;
+        }
+
+        .orders-box {
+            background: #181818;
+            padding: 10px;
+            border-radius: 8px;
+            margin-top: 12px;
+            text-align: left;
+            font-size: 0.85em;
+        }
+
+        .footer {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.75em;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="app-container">
+        <!-- Logo SVG Integrado -->
+        <header>
+            <svg width="50" height="60" viewBox="0 0 100 110" fill="none" xmlns="http://www.w3.org/2000/svg" style="filter: drop-shadow(0 0 8px rgba(212,175,55,0.5));">
+                <path d="M25 70H75L70 100H30L25 70Z" fill="#2a2a2a" stroke="#d4af37" stroke-width="3"/>
+                <path d="M22 65H78V70H22V65Z" fill="#d4af37"/>
+                <path d="M27 72H73L70 95H30L27 72Z" fill="#f5f2e9"/>
+                <path d="M50 48C50 48 38 35 38 25C38 15 48 10 50 5C52 10 62 15 62 25C62 35 50 48 50 48Z" fill="#ffa726"/>
+                <path d="M50 75C50 75 68 65 72 50C75 40 65 30 50 42C35 30 25 40 28 50C32 65 50 75 50 75Z" fill="#4caf50" opacity="0.9"/>
+            </svg>
+            <h1>Brillo Artesanal</h1>
+            <div class="school-tag">Pacasmayo, Perú</div>
+        </header>
+
+        <!-- Aromas -->
+        <div class="card">
+            <h2>✨ Esencias Naturales</h2>
+            <div class="visual-grid">
+                <div class="visual-item">
+                    <span>🍊</span>
+                    <h4>Naranja</h4>
+                </div>
+                <div class="visual-item">
+                    <span>🥥</span>
+                    <h4>Coco</h4>
+                </div>
+                <div class="visual-item">
+                    <span>🌿</span>
+                    <h4>Menta</h4>
+                </div>
+            </div>
+            <div class="price-badge">S/ 12.00 c/u</div>
+        </div>
+
+        <!-- Proceso Visual -->
+        <div class="card">
+            <h2>⚙️ Proceso Rápido</h2>
+            <div class="steps-container">
+                <div class="step-box">
+                    <strong>01</strong>
+                    Reciclar vidrio
+                </div>
+                <div class="step-box">
+                    <strong>02</strong>
+                    Fijar pabilo
+                </div>
+                <div class="step-box">
+                    <strong>03</strong>
+                    Cera soya
+                </div>
+            </div>
+        </div>
+
+        <!-- Compromiso Ecológico -->
+        <div class="card">
+            <h2>♻️ Las 3R Ecológicas</h2>
+            <div class="visual-grid">
+                <div class="visual-item">
+                    <span style="font-size:1.4em;">📉</span>
+                    <h4 style="font-size:0.75em;">Reducir químicos</h4>
+                </div>
+                <div class="visual-item">
+                    <span style="font-size:1.4em;">🔄</span>
+                    <h4 style="font-size:0.75em;">Reutilizar envases</h4>
+                </div>
+                <div class="visual-item">
+                    <span style="font-size:1.4em;">🌱</span>
+                    <h4 style="font-size:0.75em;">Reciclar cera</h4>
+                </div>
+            </div>
+        </div>
+
+        <!-- Formulario -->
+        <div class="card">
+            <h2>🛍️ Realizar Pedido</h2>
+            <div id="alertBox" class="alert">¡Pedido registrado con éxito!</div>
+            <form id="orderForm">
+                <input type="text" id="cliente" placeholder="Tu Nombre" required>
+                <input type="number" id="cantidad" placeholder="Cantidad" min="1" required>
+                <select id="aroma" required>
+                    <option value="" disabled selected>Elige aroma</option>
+                    <option value="Naranja">🍊 Naranja</option>
+                    <option value="Coco">🥥 Coco</option>
+                    <option value="Menta">🌿 Menta</option>
+                </select>
+                <input type="text" id="direccion" placeholder="Dirección" required>
+                <button type="submit">Enviar Pedido</button>
+            </form>
+
+            <div class="orders-box" id="ordersSection" style="display:none;">
+                <strong style="color:var(--gold);">Tus pedidos guardados:</strong>
+                <ul id="ordersListContent" style="margin:5px 0 0 0; padding-left:15px; color:#ccc;"></ul>
+            </div>
+        </div>
+
+        <div class="footer">
+            Brillo Artesanal © 2026 • Hecho con 💚
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', cargarPedidos);
+
+        document.getElementById('orderForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const cliente = document.getElementById('cliente').value;
+            const cantidad = document.getElementById('cantidad').value;
+            const aroma = document.getElementById('aroma').value;
+            const direccion = document.getElementById('direccion').value;
+
+            const nuevoPedido = { cliente, cantidad, aroma, direccion };
+            let pedidos = JSON.parse(localStorage.getItem('pedidos_brillo')) || [];
+            pedidos.push(nuevoPedido);
+            localStorage.setItem('pedidos_brillo', JSON.stringify(pedidos));
+
+            const alertBox = document.getElementById('alertBox');
+            alertBox.style.display = 'block';
+            setTimeout(() => { alertBox.style.display = 'none'; }, 2500);
+
+            document.getElementById('orderForm').reset();
+            cargarPedidos();
+        });
+
+        function cargarPedidos() {
+            let pedidos = JSON.parse(localStorage.getItem('pedidos_brillo')) || [];
+            const ordersSection = document.getElementById('ordersSection');
+            const ordersListContent = document.getElementById('ordersListContent');
+
+            if (pedidos.length > 0) {
+                ordersSection.style.display = 'block';
+                ordersListContent.innerHTML = '';
+                pedidos.forEach(p => {
+                    const li = document.createElement('li');
+                    li.innerText = `${p.cliente} - ${p.cantidad}x ${p.aroma} (${p.direccion})`;
+                    ordersListContent.appendChild(li);
+                });
+            }
+        }
+    </script>
+</body>
+</html>
